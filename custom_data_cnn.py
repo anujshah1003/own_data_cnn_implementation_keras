@@ -172,11 +172,39 @@ model.add(Activation('softmax'))
 #model.compile(loss='categorical_crossentropy', optimizer=sgd,metrics=["accuracy"])
 model.compile(loss='categorical_crossentropy', optimizer='rmsprop',metrics=["accuracy"])
 
+# Viewing model_configuration
+
+model.summary()
+model.get_config()
+model.layers[0].get_config()
+model.layers[0].input_shape			
+model.layers[0].output_shape			
+model.layers[0].get_weights()
+np.shape(model.layers[0].get_weights()[0])
+model.layers[0].trainable
+
 #%%
 # Training
 hist = model.fit(X_train, y_train, batch_size=16, nb_epoch=num_epoch, verbose=1, validation_data=(X_test, y_test))
 
 #hist = model.fit(X_train, y_train, batch_size=32, nb_epoch=20,verbose=1, validation_split=0.2)
+
+# Training with callbacks
+from keras import callbacks
+
+filename='model_train_new.csv'
+csv_log=callbacks.CSVLogger(filename, separator=',', append=False)
+
+early_stopping=callbacks.EarlyStopping(monitor='val_loss', min_delta=0, patience=0, verbose=0, mode='min')
+
+filepath="Best-weights-my_model-{epoch:03d}-{loss:.4f}-{acc:.4f}.hdf5"
+
+checkpoint = callbacks.ModelCheckpoint(filepath, monitor='val_loss', verbose=1, save_best_only=True, mode='min')
+
+callbacks_list = [csv_log,early_stopping,checkpoint]
+
+hist = model.fit(X_train, y_train, batch_size=16, nb_epoch=num_epoch, verbose=1, validation_data=(X_test, y_test),callbacks=callbacks_list)
+
 
 # visualizing losses and accuracy
 train_loss=hist.history['loss']
@@ -365,6 +393,7 @@ plot_confusion_matrix(cnf_matrix, classes=target_names,
 plt.show()
 
 #%%
+# Saving and loading model and weights
 from keras.models import model_from_json
 from keras.models import load_model
 
