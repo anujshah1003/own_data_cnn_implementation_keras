@@ -126,9 +126,9 @@ num_classes = 4
 num_of_samples = img_data.shape[0]
 labels = np.ones((num_of_samples,),dtype='int64')
 
-labels[0:102]=0
-labels[102:204]=1
-labels[204:606]=2
+labels[0:202]=0
+labels[202:404]=1
+labels[404:606]=2
 labels[606:]=3
 	  
 names = ['cats','dogs','horses','humans']
