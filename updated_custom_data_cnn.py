@@ -35,7 +35,7 @@ num_epoch=20
 # Define the number of classes
 num_classes = 4
 
-labels_name={'cats':0,'dogs':1,'horses':2,'Humans':3}
+labels_name={'cats':0,'dogs':1,'horses':2,'humans':3}
 
 img_data_list=[]
 labels_list = []
