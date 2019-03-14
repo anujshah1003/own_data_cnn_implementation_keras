@@ -1,4 +1,8 @@
 # own_data_cnn_implementation_keras
+
+if from sklearn.cross_validation import train_test_split gives error then use 
+from sklearn.model_selection import train_test_split
+
 A complete tutorial on using own dataset to train a CNN from scratch in Keras (TF &amp; Theano Backend).
 Video Tutorial-part-1:https://www.youtube.com/edit?o=U&video_id=u8BW_fl6WRc
 
