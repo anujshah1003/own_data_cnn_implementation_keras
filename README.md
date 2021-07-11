@@ -12,3 +12,6 @@ The updated_custom_data_cnn.py is explained in part 3 of the video which basical
 Video Tutorial-part-3:
 
 Extract the data.zip and the python script in one directory.
+
+# Support
+if you would like to support conisder [buying me a coffee](https://www.buymeacoffee.com/anujshah645)
